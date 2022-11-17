@@ -35,7 +35,7 @@ class CalculatePlayer(ExtraTools):
 
 	def Process(self, image):
 		points = self.PoseDetector.Detect(image)
-
+		
 		if points is None:
 			return image, None, None
 		
@@ -86,8 +86,6 @@ if "__main__" == __name__:
 			break
 
 		points, angles, canvas = cp.Process(img)
-
-		print(points)
 
 		cv2.imshow('', img)
 		if cv2.waitKey(0) & 0xFF == ord("q"):

@@ -1,0 +1,26 @@
+syntax = "proto3";
+package bodypose;
+
+// Service
+service BodyPose {
+  rpc ExtractBodyPose(ExtractBodyPoseRequest) returns (ExtractBodyPoseResponse) {}
+}
+
+// Request Name
+message ExtractBodyPoseRequest {
+  bytes frame=1;
+}
+
+// Response Array
+
+// message arr{
+//   repeated float p=1;
+// }
+
+// message extractCourtLinesResponse{
+//   repeated arr point=1;  
+// }
+
+message ExtractBodyPoseResponse{
+  bytes point=1;
+}

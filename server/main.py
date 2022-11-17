@@ -9,7 +9,7 @@ from lib.ExtraTools import ExtraTools
 class CalculatePlayer(ExtraTools):
 	def __init__(self):
 		super().__init__()
-		self.pose_detector = BodyPoseDetector()
+		self.PoseDetector = BodyPoseDetector()
 
 		self.regular_angle_descriptors: collections.defaultdict(list) = {
 			"r_armpit" 	: [ ["RIGHT", "elbow"],["RIGHT", "shoulder"], ["RIGHT", "hip"]	 	],
@@ -33,12 +33,11 @@ class CalculatePlayer(ExtraTools):
 		return angles
 
 
-	def pose_extractor(self, image):
-		points = []
-		points = self.pose_detector.Detect(image)
+	def Process(self, image):
+		points = self.PoseDetector.Detect(image)
 
 		if points is None:
-			return image, [], [] # image, points, angles
+			return image, None, None
 		
 		angles = self.GetSpecialAngles(points)
 
@@ -86,7 +85,7 @@ if "__main__" == __name__:
 		if not ret:
 			break
 
-		points, angles, canvas = cp.pose_extractor(img)
+		points, angles, canvas = cp.Process(img)
 
 		print(points)
 

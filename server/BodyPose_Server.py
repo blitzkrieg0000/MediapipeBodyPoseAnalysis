@@ -9,6 +9,7 @@ import numpy as np
 import BodyPose_pb2 as rc
 import BodyPose_pb2_grpc as rc_grpc
 from lib.CalculatePlayer import CalculatePlayer
+from lib.helpers import Converters
 from lib.Response import Response, ResponseCodes
 
 logging.basicConfig(format='%(levelname)s - %(asctime)s => %(message)s', datefmt='%d-%m-%Y %H:%M:%S', level=logging.NOTSET)
@@ -23,32 +24,12 @@ class BodyPoseServer(rc_grpc.BodyPoseServicer):
         return rc.Response(Code=rc.Response.ResponseCodes.Value(response.code.name), Message=response.message, Data=response.data)
 
 
-    def Bytes2Obj(self, bytes):
-        return pickle.loads(bytes)
-
-
-    def Obj2Bytes(self, obj):
-        return pickle.dumps(obj)
-
-
-    def Bytes2Frame(self, image):
-        nparr = np.frombuffer(image, np.uint8)
-        frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-        return frame
-        
-        
-    def Frame2Bytes(self, image):
-        res, encodedImg = cv2.imencode('.jpg', image)
-        frame = encodedImg.tobytes()
-        return frame
-
-
     def ExtractBodyPose(self, request, context):
-        frame = self.Bytes2Frame(request.frame)
+        frame = Converters.Bytes2Frame(request.frame)
 
         points, angles, canvas = self.CalculatePlayer.Process(frame)
-        
-        data = self.Obj2Bytes([points, angles, self.Frame2Bytes(canvas)]) 
+
+        data = Converters.Obj2Bytes([points, angles, Converters.Frame2Bytes(canvas)]) 
         return rc.ExtractBodyPoseResponse(
             Response=self.CreateResponse(
                 Response(ResponseCodes.SUCCESS, message="Producer Streaming Yapıyor...", data=data)

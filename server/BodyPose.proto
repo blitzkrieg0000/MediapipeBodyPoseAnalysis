@@ -1,10 +1,12 @@
 syntax = "proto3";
 package bodypose;
 
+
 // Service
 service BodyPose {
   rpc ExtractBodyPose(ExtractBodyPoseRequest) returns (ExtractBodyPoseResponse) {}
 }
+
 
 // Components
 message Response{

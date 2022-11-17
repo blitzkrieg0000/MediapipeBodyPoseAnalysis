@@ -8,7 +8,7 @@ import numpy as np
 
 import BodyPose_pb2 as rc
 import BodyPose_pb2_grpc as rc_grpc
-
+from lib.helpers import Converters
 
 class BodyPoseClient():
     def __init__(self):
@@ -16,28 +16,8 @@ class BodyPoseClient():
         self.stub = rc_grpc.BodyPoseStub(self.channel)
     
 
-    def Bytes2Obj(self, bytes):
-        return pickle.loads(bytes)
-
-
-    def Obj2Bytes(self, obj):
-        return pickle.dumps(obj)
-
-
-    def Bytes2Frame(self, image):
-        nparr = np.frombuffer(image, np.uint8)
-        frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-        return frame
-        
-        
-    def Frame2Bytes(self, image):
-        res, encodedImg = cv2.imencode('.jpg', image)
-        frame = encodedImg.tobytes()
-        return frame
-
-
     def ExtractBodyPose(self, frame):
-        frame = self.Frame2Bytes(frame)
+        frame = Converters.Frame2Bytes(frame)
         response = self.stub.ExtractBodyPose(rc.ExtractBodyPoseRequest(frame=frame))
         return response
 
@@ -50,7 +30,6 @@ def Bytes2Frame(image):
     nparr = np.frombuffer(image, np.uint8)
     frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     return frame
-
 
 
 if "__main__" == __name__:

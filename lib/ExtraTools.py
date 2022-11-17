@@ -8,6 +8,7 @@ class ExtraTools():
 	def __init__(self) -> None:
 		pass
 
+
 	def softmax(x):
 		return np.exp(x)/sum(np.exp(x))
 
@@ -32,20 +33,18 @@ class ExtraTools():
 		return ang
 
 
-	def getAngle3D(self, A, B, C, draw=0):
+	def getAngle3D(self, A, B, C):
 	
-		width, height = self.currentImage.shape[0], self.currentImage.shape[1]
-
-		P1x = int(A.x * height)
-		P1y = int(A.y * width)
+		P1x = int(A.x)
+		P1y = int(A.y)
 		P1z = int(A.z)
 
-		P2x = int(A.x * height)
-		P2y = int(B.y * width)
+		P2x = int(A.x)
+		P2y = int(B.y)
 		P2z = int(B.z)
 
-		P3x = int(C.x * height)
-		P3y = int(C.y * width)
+		P3x = int(C.x)
+		P3y = int(C.y)
 		P3z = int(C.z)
 
 
@@ -62,8 +61,6 @@ class ExtraTools():
 		except Exception as e:
 			return -1
 		
-		if draw == 1:
-			self.currentImage = self.drawAngles(self.currentImage, angle, A, B, C)
 
 		return angle
 

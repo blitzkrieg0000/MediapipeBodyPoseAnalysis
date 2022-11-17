@@ -5,12 +5,29 @@ from lib.PoseConvertTools import PoseConvertTools
 
 
 class BodyPoseDetector(PoseConvertTools):
-	def __init__(self):
+	def __init__(self, min_detection_confidence=0.5, min_tracking_confidence=0.5):
 		super().__init__()
 		self.mp_drawing = mp.solutions.drawing_utils
 		self.mp_drawing_styles = mp.solutions.drawing_styles
 		self.mp_pose = mp.solutions.pose
-		self.poseProcessor = self.mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5)
+		self.poseProcessor = self.mp_pose.Pose(min_detection_confidence=min_detection_confidence, min_tracking_confidence=min_tracking_confidence)
+
+
+	def ExtractPoints(self, results, h, w):
+		points = []
+		lm = results.pose_landmarks
+		if lm is None:
+			return None
+		lmPose  = self.mp_pose.PoseLandmark
+		points = self.convert2Node(lm, lmPose, h, w)
+		return points
+
+
+	def Detect(self, image):
+		results = self.poseProcessor.process(image)
+		h, w, c = image.shape
+		points = self.ExtractPoints(results, h, w)
+		return points
 
 
 	def DrawPoints(self, image, results):
@@ -23,17 +40,5 @@ class BodyPoseDetector(PoseConvertTools):
 		return image
 
 
-	def ExtractPoints(self, results):
-		points = []
-		lm = results.pose_landmarks
-		if lm is None:
-			return
-		lmPose  = self.mp_pose.PoseLandmark
-		points = self.convert2Node(lm, lmPose)
-		return points
 
 
-	def GetBodyPose(self, image):
-		results = self.poseProcessor.process(image)
-		points = self.ExtractPoints(results)
-		return points

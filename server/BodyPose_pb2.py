@@ -13,18 +13,21 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x42odyPose.proto\x12\x08\x62odypose\"\'\n\x16\x45xtractBodyPoseRequest\x12\r\n\x05\x66rame\x18\x01 \x01(\x0c\"(\n\x17\x45xtractBodyPoseResponse\x12\r\n\x05point\x18\x01 \x01(\x0c\x32\x64\n\x08\x42odyPose\x12X\n\x0f\x45xtractBodyPose\x12 .bodypose.ExtractBodyPoseRequest\x1a!.bodypose.ExtractBodyPoseResponse\"\x00\x62\x06proto3')
-
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x42odyPose.proto\x12\x08\x62odypose\"\xe9\x01\n\x08Response\x12.\n\x04\x43ode\x18\x01 \x01(\x0e\x32 .bodypose.Response.ResponseCodes\x12\x0f\n\x07Message\x18\x02 \x01(\t\x12\x0c\n\x04\x44\x61ta\x18\x03 \x01(\x0c\"\x8d\x01\n\rResponseCodes\x12\x0b\n\x07SUCCESS\x10\x00\x12\x0b\n\x07WARNING\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x12\x08\n\x04INFO\x10\x03\x12\x08\n\x04NULL\x10\x04\x12\r\n\tNOT_FOUND\x10\x05\x12\x0c\n\x08REQUIRED\x10\x06\x12\x10\n\x0cUNSUFFICIENT\x10\x07\x12\x14\n\x10\x43ONNECTION_ERROR\x10\x08\"\'\n\x16\x45xtractBodyPoseRequest\x12\r\n\x05\x66rame\x18\x01 \x01(\x0c\"?\n\x17\x45xtractBodyPoseResponse\x12$\n\x08Response\x18\x01 \x01(\x0b\x32\x12.bodypose.Response2d\n\x08\x42odyPose\x12X\n\x0f\x45xtractBodyPose\x12 .bodypose.ExtractBodyPoseRequest\x1a!.bodypose.ExtractBodyPoseResponse\"\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'BodyPose_pb2', globals())
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  _EXTRACTBODYPOSEREQUEST._serialized_start=28
-  _EXTRACTBODYPOSEREQUEST._serialized_end=67
-  _EXTRACTBODYPOSERESPONSE._serialized_start=69
-  _EXTRACTBODYPOSERESPONSE._serialized_end=109
-  _BODYPOSE._serialized_start=111
-  _BODYPOSE._serialized_end=211
+  _RESPONSE._serialized_start=29
+  _RESPONSE._serialized_end=262
+  _RESPONSE_RESPONSECODES._serialized_start=121
+  _RESPONSE_RESPONSECODES._serialized_end=262
+  _EXTRACTBODYPOSEREQUEST._serialized_start=264
+  _EXTRACTBODYPOSEREQUEST._serialized_end=303
+  _EXTRACTBODYPOSERESPONSE._serialized_start=305
+  _EXTRACTBODYPOSERESPONSE._serialized_end=368
+  _BODYPOSE._serialized_start=370
+  _BODYPOSE._serialized_end=470
 # @@protoc_insertion_point(module_scope)

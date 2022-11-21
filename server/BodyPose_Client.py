@@ -15,7 +15,7 @@ class BodyPoseClient():
                 ('grpc.max_send_message_length', MAX_MESSAGE_LENGTH),
                 ('grpc.max_receive_message_length', MAX_MESSAGE_LENGTH),
             ],
-            compression=grpc.Compression.Gzip
+            # compression=grpc.Compression.Gzip
         )
         self.stub = rc_grpc.BodyPoseStub(self.channel)
     

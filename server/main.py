@@ -11,6 +11,7 @@ if "__main__" == __name__:
     input_video_path = "server/asset/video/train/roc/forehand/roc_1.7.mp4"
     cap = cv2.VideoCapture(input_video_path)
     
+    
     while(True):
         ret, frame = cap.read()
         if not ret:
@@ -23,7 +24,7 @@ if "__main__" == __name__:
             data = Converters.Bytes2Obj(responseData.Response.Data)
             frame = data[2]
 
-        cv2.imshow('', frame )
+        cv2.imshow('', frame)
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
 

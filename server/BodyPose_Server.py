@@ -22,25 +22,19 @@ class BodyPoseServer(rc_grpc.BodyPoseServicer):
 
 
     def ExtractBodyPose(self, request, context):
-        frame = Converters.Bytes2Frame(request.frame)
+        frame = Converters.Bytes2Obj(request.frame)
 
         points, angles, canvas = self.CalculatePlayer.Process(frame)
 
-        points = []
-        angles = []
-        
         data = Converters.Obj2Bytes([points, angles, canvas]) 
     
-        res =  rc.ExtractBodyPoseResponse(
+        responseData =  rc.ExtractBodyPoseResponse(
             Response=self.CreateResponse(
-                Response(ResponseCodes.SUCCESS, message="Producer Streaming Yapıyor...", data=data)
+                Response(ResponseCodes.SUCCESS, message="...", data=data)
             )
         )
 
-
-
-
-        return res
+        return responseData
 
 
 def serve():

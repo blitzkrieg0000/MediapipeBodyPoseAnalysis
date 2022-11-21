@@ -15,14 +15,13 @@ class BodyPoseClient():
                 ('grpc.max_send_message_length', MAX_MESSAGE_LENGTH),
                 ('grpc.max_receive_message_length', MAX_MESSAGE_LENGTH),
             ],
-            # compression=grpc.Compression.Gzip
+            compression=grpc.Compression.Gzip
         )
         self.stub = rc_grpc.BodyPoseStub(self.channel)
     
 
     def ExtractBodyPose(self, frame):
-        frame = Converters.Frame2Bytes(frame)
-
+        frame = Converters.Obj2Bytes(frame)
         response = self.stub.ExtractBodyPose(rc.ExtractBodyPoseRequest(frame=frame))
         
         return response

@@ -39,6 +39,3 @@ class BodyPoseDetector(PoseConvertTools):
 		)
 		return image
 
-
-
-

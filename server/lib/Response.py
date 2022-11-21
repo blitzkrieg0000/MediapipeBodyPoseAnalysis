@@ -15,7 +15,8 @@ class ResponseCodes(Enum):
 
 
 class Response(object):
-    def __init__(self, code:ResponseCodes, message:str=None, data:Any=None) -> None:
+    def __init__(self, code:ResponseCodes, message:str=None, data:Any=None, frame:bytes=None) -> None:
         self.code : ResponseCodes = code
         self.message = message
         self.data = data
+        self.frame = frame

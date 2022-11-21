@@ -47,7 +47,6 @@ class ExtraTools():
 		P3y = int(C.y)
 		P3z = int(C.z)
 
-
 		a = np.array([P1x,P1y,P1z])
 		b = np.array([P2x,P2y,P2z])
 		c = np.array([P3x,P3y,P3z])
@@ -61,7 +60,6 @@ class ExtraTools():
 		except Exception as e:
 			return -1
 		
-
 		return angle
 
 

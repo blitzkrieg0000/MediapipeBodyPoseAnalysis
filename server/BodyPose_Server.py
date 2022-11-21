@@ -1,10 +1,7 @@
 import logging
-import pickle
 from concurrent import futures
-
-import cv2
+import time
 import grpc
-import numpy as np
 
 import BodyPose_pb2 as rc
 import BodyPose_pb2_grpc as rc_grpc
@@ -29,12 +26,21 @@ class BodyPoseServer(rc_grpc.BodyPoseServicer):
 
         points, angles, canvas = self.CalculatePlayer.Process(frame)
 
-        data = Converters.Obj2Bytes([points, angles, Converters.Frame2Bytes(canvas)]) 
-        return rc.ExtractBodyPoseResponse(
+        points = []
+        angles = []
+        
+        data = Converters.Obj2Bytes([points, angles, canvas]) 
+    
+        res =  rc.ExtractBodyPoseResponse(
             Response=self.CreateResponse(
                 Response(ResponseCodes.SUCCESS, message="Producer Streaming Yapıyor...", data=data)
             )
         )
+
+
+
+
+        return res
 
 
 def serve():

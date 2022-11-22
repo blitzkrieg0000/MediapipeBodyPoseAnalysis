@@ -28,7 +28,9 @@ class BodyPoseServer(rc_grpc.BodyPoseServicer):
         points, angles, canvas = self.CalculatePlayer.Process(frame)
 
         data = Converters.Obj2Bytes([points, angles, canvas]) 
-    
+        # with open("result/dump.txt", "w") as f:
+        #     f.write(str(data))
+
         responseData =  rc.ExtractBodyPoseResponse(
             Response=self.CreateResponse(
                 Response(ResponseCodes.SUCCESS, message="...", data=data)
@@ -36,6 +38,7 @@ class BodyPoseServer(rc_grpc.BodyPoseServicer):
         )
 
         return responseData
+
 
 
 def serve():

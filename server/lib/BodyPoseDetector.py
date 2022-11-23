@@ -10,7 +10,7 @@ class BodyPoseDetector(PoseConvertTools):
 		self.mp_drawing = mp.solutions.drawing_utils
 		self.mp_drawing_styles = mp.solutions.drawing_styles
 		self.mp_pose = mp.solutions.pose
-		self.poseProcessor = self.mp_pose.Pose(min_detection_confidence=min_detection_confidence, min_tracking_confidence=min_tracking_confidence)
+		self.poseProcessor = self.mp_pose.Pose(min_detection_confidence=min_detection_confidence, min_tracking_confidence=min_tracking_confidence, model_complexity=2)
 
 
 	def ExtractPoints(self, results, h, w):

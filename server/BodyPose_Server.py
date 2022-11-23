@@ -1,6 +1,5 @@
 import logging
 from concurrent import futures
-import time
 import grpc
 
 import BodyPose_pb2 as rc
@@ -11,8 +10,8 @@ from lib.Response import Response, ResponseCodes
 
 logging.basicConfig(format='%(levelname)s - %(asctime)s => %(message)s', datefmt='%d-%m-%Y %H:%M:%S', level=logging.NOTSET)
 
-MAX_MESSAGE_LENGTH = 10*1024*1024
 
+MAX_MESSAGE_LENGTH = 10*1024*1024
 class BodyPoseServer(rc_grpc.BodyPoseServicer):
     def __init__(self):
         self.CalculatePlayer = CalculatePlayer()
@@ -40,7 +39,6 @@ class BodyPoseServer(rc_grpc.BodyPoseServicer):
         return responseData
 
 
-
 def serve():
     server = grpc.server(
         futures.ThreadPoolExecutor(max_workers=10),
@@ -59,6 +57,10 @@ def serve():
 
 if __name__ == "__main__":
     serve()
+
+
+
+
 
 
 

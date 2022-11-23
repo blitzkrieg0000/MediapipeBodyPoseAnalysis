@@ -19,7 +19,8 @@ if "__main__" == __name__:
         ret, frame = cap.read()
         if not ret:
             break
-
+        
+        frame = cv2.imread("server/asset/image/temp_cropped.jpg")
 
         response = bodyPoseClient.ExtractBodyPose(frame)
         
@@ -35,16 +36,16 @@ if "__main__" == __name__:
             tic = time.time()
         frame_counter+=1
 
-
+        print(canvas)
         if canvas is not None:
             canvas = cv2.putText(canvas, f"FPS: {fps_average}", (10, 40), cv2.FONT_HERSHEY_COMPLEX, 1, (0,0,255))
             frame = canvas
 
 
-        cv2.imshow('', frame )
+        cv2.imshow('', frame)
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
-
+        
 
     cap.release()
     cv2.destroyAllWindows()

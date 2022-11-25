@@ -6,7 +6,7 @@ import numpy as np
 
 if "__main__" == __name__:
     bodyPoseClient = BodyPoseClient()
-    input_video_path = "server/asset/video/train/roc/forehand/roc_1.7.mp4"
+    input_video_path = "server/asset/video/test.mp4"
     cap = cv2.VideoCapture(input_video_path)
 
 
@@ -20,7 +20,7 @@ if "__main__" == __name__:
         if not ret:
             break
         
-        frame = cv2.imread("server/asset/image/temp_cropped.jpg")
+        # frame = cv2.imread("server/asset/image/temp_cropped.jpg")
 
         response = bodyPoseClient.ExtractBodyPose(frame)
         

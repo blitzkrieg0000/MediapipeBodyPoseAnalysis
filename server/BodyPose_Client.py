@@ -6,6 +6,7 @@ from lib.helpers import Converters
 
 MAX_MESSAGE_LENGTH = 100*1024*1024 # 100MB
 
+
 class BodyPoseClient():
     def __init__(self):
         self.channel = grpc.insecure_channel(

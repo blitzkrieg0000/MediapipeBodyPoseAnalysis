@@ -2,13 +2,12 @@ import time
 import cv2
 from BodyPose_Client import BodyPoseClient
 from lib.helpers import Converters
-import numpy as np
+
 
 if "__main__" == __name__:
     bodyPoseClient = BodyPoseClient()
     input_video_path = "server/asset/video/test.mp4"
     cap = cv2.VideoCapture(input_video_path)
-
 
     tic = 0
     canvas = None
@@ -19,8 +18,6 @@ if "__main__" == __name__:
         ret, frame = cap.read()
         if not ret:
             break
-        
-        # frame = cv2.imread("server/asset/image/temp_cropped.jpg")
 
         response = bodyPoseClient.ExtractBodyPose(frame)
         

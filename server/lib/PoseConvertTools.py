@@ -4,7 +4,8 @@ from lib.Point import Point
 class PoseConvertTools():
 	def __init__(self):
 		self.node = {}
-		
+	
+	
 	def convert2Node(self, lm, lmPose, nh = 1, nw = 1):
 		self.node = {
 			"CENTER":{
